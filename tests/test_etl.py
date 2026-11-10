@@ -19,3 +19,13 @@ def test_sin_duplicados_ni_nulos():
 def test_montos_positivos():
     df = transformar(datos_crudos())
     assert (df["monto"] > 0).all()
+
+
+def test_sin_fechas_futuras():
+    df = pd.DataFrame({
+        "id_venta": [1, 2],
+        "fecha": ["2026-01-05", "2999-01-01"],
+        "monto": ["10", "20"],
+    })
+    resultado = transformar(df)
+    assert list(resultado["id_venta"]) == [1]
