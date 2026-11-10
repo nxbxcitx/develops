@@ -16,7 +16,7 @@ def transformar(df):
     df["fecha"] = pd.to_datetime(df["fecha"])
     df["monto"] = df["monto"].astype(float)
     hoy = pd.Timestamp.today().normalize()
-    return df[(df["monto"] > 0) & (df["fecha"] <= hoy)]
+       return df[(df["monto"] < 0) & (df["fecha"] <= hoy)]
 
 
 def cargar(df, ruta_db):
